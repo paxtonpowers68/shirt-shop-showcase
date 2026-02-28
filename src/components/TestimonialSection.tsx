@@ -1,66 +1,78 @@
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
     name: "James Mitchell",
-    role: "Creative Director",
+    role: "Creative Director, Studio M",
     text: "The quality is unmatched. I've replaced my entire wardrobe with Thread & Co shirts. The fit is perfect every single time.",
     rating: 5,
+    initials: "JM",
   },
   {
     name: "Sarah Chen",
-    role: "Architect",
+    role: "Principal Architect",
     text: "Finally, shirts that transition seamlessly from the studio to dinner. The fabrics are extraordinary — you can feel the difference.",
     rating: 5,
+    initials: "SC",
   },
   {
     name: "David Okonkwo",
-    role: "Entrepreneur",
+    role: "Founder, Apex Ventures",
     text: "I've been a customer for three years. The consistency and attention to detail keep me coming back. Best investment in my wardrobe.",
     rating: 5,
+    initials: "DO",
   },
 ];
 
 const TestimonialSection = () => {
   return (
-    <section className="py-24 lg:py-32 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section className="py-28 lg:py-40 bg-background">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <p className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-3">
+          <span className="text-accent text-xs font-semibold tracking-[0.4em] uppercase">
             Testimonials
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
-            What Our Clients Say
+          </span>
+          <h2 className="font-display text-5xl md:text-7xl font-light text-foreground mt-3">
+            Loved by <span className="italic">many</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.15 }}
-              className="bg-card border border-border rounded-lg p-8"
+              transition={{ delay: i * 0.12 }}
+              className="relative bg-card rounded-2xl p-8 lg:p-10 border border-border hover:border-accent/20 transition-colors duration-300 group"
             >
-              <div className="flex gap-1 mb-4">
+              <Quote className="w-8 h-8 text-accent/20 mb-6 group-hover:text-accent/40 transition-colors duration-300" />
+
+              <div className="flex gap-0.5 mb-5">
                 {Array.from({ length: t.rating }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-accent text-accent" />
+                  <Star key={j} className="w-3.5 h-3.5 fill-accent text-accent" />
                 ))}
               </div>
-              <p className="text-foreground leading-relaxed mb-6 italic">
+
+              <p className="text-foreground leading-relaxed mb-8 text-sm font-light">
                 "{t.text}"
               </p>
-              <div>
-                <p className="font-semibold text-foreground">{t.name}</p>
-                <p className="text-muted-foreground text-sm">{t.role}</p>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                  <span className="text-accent text-xs font-semibold">{t.initials}</span>
+                </div>
+                <div>
+                  <p className="font-medium text-foreground text-sm">{t.name}</p>
+                  <p className="text-muted-foreground text-xs">{t.role}</p>
+                </div>
               </div>
             </motion.div>
           ))}
