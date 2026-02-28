@@ -1,70 +1,71 @@
 import { motion } from "framer-motion";
 import { Scissors, Leaf, Award, Truck } from "lucide-react";
-import fabricTexture from "@/assets/fabric-texture.jpg";
 
 const features = [
   {
     icon: Scissors,
     title: "Master Tailoring",
-    description: "Every shirt is cut with precision by expert craftsmen with decades of experience.",
+    description: "Precision-cut by expert craftsmen with decades of heritage.",
+    number: "01",
   },
   {
     icon: Leaf,
-    title: "Sustainable Fabrics",
-    description: "Ethically sourced cotton, linen, and silk from certified sustainable farms.",
+    title: "Sustainable",
+    description: "Ethically sourced fabrics from certified sustainable farms.",
+    number: "02",
   },
   {
     icon: Award,
     title: "Lifetime Quality",
-    description: "We stand behind every stitch. Free repairs and replacements for life.",
+    description: "We stand behind every stitch. Free repairs for life.",
+    number: "03",
   },
   {
     icon: Truck,
-    title: "Free Worldwide",
-    description: "Complimentary express shipping on all orders over $150.",
+    title: "Free Shipping",
+    description: "Complimentary express delivery on orders over $150.",
+    number: "04",
   },
 ];
 
 const FeaturesSection = () => {
   return (
-    <section className="py-24 lg:py-32 bg-secondary relative overflow-hidden">
-      {/* Subtle texture overlay */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <img src={fabricTexture} alt="" className="w-full h-full object-cover" aria-hidden="true" />
-      </div>
-
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
+    <section className="py-28 lg:py-40 bg-secondary/50">
+      <div className="container mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <p className="text-accent text-sm font-semibold tracking-[0.3em] uppercase mb-3">
-            Why Thread & Co
-          </p>
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-foreground">
-            Crafted with Purpose
+          <span className="text-accent text-xs font-semibold tracking-[0.4em] uppercase">
+            Why Us
+          </span>
+          <h2 className="font-display text-5xl md:text-7xl font-light text-foreground mt-3">
+            Crafted with <span className="italic">purpose</span>
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border rounded-2xl overflow-hidden">
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="text-center"
+              transition={{ delay: i * 0.08 }}
+              className="bg-background p-8 lg:p-10 group hover:bg-card transition-colors duration-300"
             >
-              <div className="w-14 h-14 mx-auto mb-5 rounded-full bg-accent/10 flex items-center justify-center">
-                <feature.icon className="w-6 h-6 text-accent" />
+              <span className="text-muted-foreground/30 text-xs font-mono mb-8 block">
+                {feature.number}
+              </span>
+              <div className="w-12 h-12 mb-6 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                <feature.icon className="w-5 h-5 text-accent" />
               </div>
-              <h3 className="font-display text-xl font-semibold text-foreground mb-2">
+              <h3 className="font-display text-2xl font-medium text-foreground mb-2">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
+              <p className="text-muted-foreground text-sm leading-relaxed font-light">
                 {feature.description}
               </p>
             </motion.div>
